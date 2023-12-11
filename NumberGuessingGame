@@ -1,0 +1,69 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class Main 
+{
+
+  public static void main(String[] args)
+  {
+
+    Random random = new Random();
+    
+    // numGuesses will count number of user guesses
+    int numGuesses = 0;
+
+    
+    // Will ask user for max number and store it
+    Scanner askMax = new Scanner(System.in);
+    System.out.println("Hello! What is the maximum number you want to guess?");
+    int max = askMax.nextInt();
+
+    // Creates an array with max length equal to user max
+    int[] numbers = new int[max];
+    // Loop that will fill the array with numbers 1 through user max
+    for(int i = 0; i < numbers.length; i++){
+      numbers[i] = i + 1;
+    }
+    
+    // Picks random index from array and then retrieves the number at that index and stores it. This will be the random number that the user will have to guess
+    int randomIndex = random.nextInt(numbers.length);
+    int randomNumber = numbers[randomIndex];
+    
+    
+    // Will ask user for their guess
+    Scanner askNumber = new Scanner(System.in);
+    System.out.println("Please guess the number from 1 to " + max);
+    
+
+    // Infinite loop that will keep asking user for their guess until they guess the correct number
+    while(true){
+      // Stores user guess
+      int userGuess = askNumber.nextInt();
+      // Will add 1 to numGuesses each time the user guesses
+      numGuesses++;
+
+      // Conditional statements that will check if user guess is correct
+      if(userGuess == randomNumber){
+        // if user guessed correctly, it will congratulate user, display the number of guesses it took, and then end loop
+        System.out.println("Congratulations! You guessed the right number!");
+        System.out.println("It took you " + numGuesses + " guesses to guess the right number.");
+        break;
+      }
+      // If user guessed incorrectly, it will tell them so and will also give a hint if their number was higher or lower than the random number  
+      else{
+        System.out.println("Sorry, that was the wrong number.");
+      }
+        if(userGuess > randomNumber){
+          System.out.println("Try guessing a lower number.");
+        }
+        else{
+          System.out.println("Try guessing a larger number.");
+        }
+    }  
+    
+    askMax.close();
+    askNumber.close();
+
+  }
+
+}
