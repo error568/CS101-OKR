@@ -1,0 +1,65 @@
+*	PROGRAM DESCRIPTION:
+*	<1-2 sentences describing overall program>
+  The program will ask for a decimal amount in US dollars and a whole amountfrom the user and then convert it into 4 different currencies. There are 4 methods, 2 of them return a double and the other 2 return an int value.
+
+import java.util.Scanner;
+
+public class Main 
+{
+
+  //public static double usDollars = 117.95;
+  
+  public static void main(String[] args)
+  {
+
+    
+    Scanner askName = new Scanner(System.in);
+    System.out.println("Hello! What's your name?");
+    String userName = askName.nextLine();
+    
+    Scanner userCurrency = new Scanner(System.in);
+    System.out.printf("Hey %s, please give me a decimal amount in US dollars %n$", userName);
+    double usDollars = userCurrency.nextDouble();
+
+    Scanner userCurrencyWhole = new Scanner(System.in);
+    System.out.printf("Now give me a whole amount in US dollars%n$");
+    int usDollarsWhole = userCurrencyWhole.nextInt();
+
+  
+    System.out.printf("$%.2f is about $%.2f in Mexican pesos\n", usDollars, Main.pesosConversion(usDollars));
+    System.out.printf("$%.2f is about €%.2f in euros\n", usDollars, Main.euroConversion(usDollars));
+    System.out.printf("$%d is about $%d in Canadian dollars\n", usDollarsWhole, Main.canadianDollarConversion(usDollarsWhole));
+    System.out.printf("$%d is about ¥%d in Japanese yen\n", usDollarsWhole, Main.yenConversion(usDollarsWhole));
+    
+  }
+  /***** STATIC METHODS *****/
+  public static double pesosConversion(double conversion1)
+  {
+    // $1 = 17.94 in Mexican pesos
+    double result = conversion1 * 17.94;
+    return result;
+  }
+
+  public static double euroConversion(double conversion2)
+  {
+    // $1 = .94 in euros
+    double result = conversion2 * .94;
+    return result;
+  }
+
+  public static int canadianDollarConversion(double conversion3)
+  {
+    // $1 = 1.36 in canadian dollars
+    double result = Math.round(conversion3 * 1.36);
+    return (int) result;
+  }
+
+  public static int yenConversion(double conversion4)
+  {
+    // $1 = 148.67 in Japanese yen
+    double result = Math.round(conversion4 * 148.67);
+    return (int) result;
+  }
+
+  
+}
